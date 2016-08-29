@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{10 February 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 7}
+\subsection{Problem 5}
+\subsubsection{Question}
+Let
+\[
+f_n(x)= 
+\left\{\begin{array}{ll}0 & \displaystyle \left(x < \frac{1}{n+1}\right),\\\\\displaystyle \sin^2{\frac{\pi}{x}}& \displaystyle  \left(\frac{1}{n+1} \leq x\leq \frac{1}{n}\right), \\\\0& \displaystyle  \left(\frac{1}{n}<x\right).\\ \end{array}\right.
+\]
+Show that $\{f_n\}$ converges to a continuous function, but not uniformly. Use the series $\sum f_n$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
+\subsubsection{Answer}
+
+I claim that $\{f_n\}$ converges to $0$. 
+\begin{proof}
+We begin by fixing some $x \in \mathbb{R}$. If we have $x \leq 0 $ we are done since for no value of $n \in \mathbb{N}$ do we have 
+\[\frac{1}{n+1} \leq x\leq \frac{1}{n}\]
+and therefore each function in $\{f_n\}$ has $f_n(x)=0$. For $x> 0$ we can find an $N$ so that $n > N $ gives us $f_n(x)=0< \epsilon$ for any $\epsilon >0$. In particular pick $N$ so that the following inequality is satisfied:
+\[ 0< \frac{1}{N}<x.\]
+We are guaranteed that such an $N$ exists by the density of $\mathbb{Q}$ in $\mathbb{R}$ as well as the fact that decreasing the numerator of a positive rational number to 1 decreases it while keeping it greater than 0.
+
+Since we have $\frac{1}{N}<x$ by construction, and each $n >N$ has $\frac{1}{n} <\frac{1}{N}$ we must have $\frac{1}{n}<x$ for each $n$, and therefore $f_n(x)=0$ for every $n > N$, and $\{f_n\}$ converges to 0 as claimed.
+\end{proof}
+
+Now I claim further that $\{f_n\}$ does not converge uniformly.
+\begin{proof}
+A sequence of functions $\{f_n\}$ converges uniformly to $f$ if, given $\epsilon$ we can pick an $N$ such that for all $n > N$ we have $\left| f_n(x) - f(x) \right| < \epsilon$ over all $x$.
+
+Since we have shown above that $\{f_n\}$ converges pointwise to 0 if it converges uniformly it must converge to 0. However it does not converge uniformly. In particular, irrespective of $n$ there is an $x^*$ for which $\left| f_n(x) - f(x) \right| = 1$. 
+
+Choose 
+\[x^*_n = \frac{1}{n+\frac{1}{2}}.\]
+For $f_n$ we have 
+\[  \frac{1}{n+1}< \frac{1}{n+\frac{1}{2}} < \frac{1}{n} \]
+so we get
+\[f_n(x*_n)=\sin^2\left( \pi n + \frac{\pi}{2}\right)=1\]
+
+
+Now, clearly for no $0<\epsilon < 1$ may we satisfy the condition for uniform convergence. Since it is required that this condition be satisfied for all $\epsilon >0$ $\{f_n\}$ does not converge uniformly.
+\end{proof}
+
+The series $\sum f_n$ convergences absolutely for all $x$.
+
+\begin{proof}
+Each successive $f_n$ is nonzero only on an inverval which overlaps with the previous one in only the point $1/n$. Moreover the interval on which $f_{n}$ is nozero say $X_{n}$ has $|x| \leq |y|$ for each $x \in X_{n+1}, y \in X_n$.
+
+These facts together imply that if we fix some $x \in \mathbb{R}$ at most two functions in the sequence $\{f_n\}$ are nonzero at $x$. In particular if $x = 1/n$ for some $n \in \mathbb{N}$ then both $f_{n-1}(x) \neq 0$ and $f_n(x)\neq 0$. Otherwise we only have $f_n(x) \neq0  $ for the least $n \in \mathbb{N}$ such that $1/n <x$.  
+
+Hence, since a finite sum is convergent we see that $\sum f_n$ converges at every $x$.
+
+Since the value of each $f_n$ is always nonegative (being everywhere 0 or a square) saying that $\sum f_n$ converges is equivalent to saying that $\sum f_n$ converges absolutely and $\sum f_n$ converges absolutely as claimed.
+\end{proof}
+
+The series $\sum f_n$ does not converge uniformly. 
+\begin{proof}
+If $\{f_n\}$ does not converge uniformly neither does $\sum f_n$. 
+
+Assume towards a contradiction that $\{f_n\}$ does not converge uniformly but $\sum f_n$ does. Since $\sum f_n$ converges, the Cauchy criterion implies that there exists $N$ such that
+\[\left| F_n(x) -F_m(x) \right| \leq \epsilon\] 
+for any $x$, $n \geq N $, $m \geq N$ where $F_m$ denotes the $m$th partial sum. In particular if we take $m = n+1$ this implies that
+\[\left| F_n(x) -F_{n+1}(x) \right| = \left| f_{n+1}(x) \right| \leq \epsilon\] .
+However as $\epsilon >0 $ was chosen arbitrarily this is true if and only if $\{f_n\}$ converges uniformly to 0. Contradiction.
+
+Thus, since $\{f_n\}$ does not converge uniformly neither does $\sum f_n$ as claimed.
+\end{proof}
+
+\subsection{Problem 15}
+\subsubsection{Question}
+Suppose $f$ is a real and continuous function on $\mathbb{R}^1$, $f_n(t)=f(n t)$ for $n = 1,2,3,\dots$, and $\{f_n\}$ is equicontinuous on $[0,1]$. What conclusion can you draw about $f$?
+\subsubsection{Answer}
+\[f=\left\{ \begin{array}{ll} g(x) & x<0 \\ c & x \geq 0 \end{array} \right. \]
+where $g(0)=c$ and $g$ is continuous on $(-\infty,0)$. That is, I claim that $f(x)$ is constant for $x \geq 0$.
+
+Take $f(0)=c$ for some constant $c$. 
+
+Now pick some $x>0$ and  $\epsilon > 0$ and set  $\delta >0$ by the equicontinuity condition (i.e., the $\delta$ such that $f(B_\delta 0) \subset \ B_\epsilon c $). If we choose $n > x / \delta$  we get $x/n < \delta \Rightarrow \left| f(x) - c\right| = \left| f_n(x/n) -c \right| < \epsilon$. However since we can pick $\epsilon$ arbitrarily close to 0 we get $f(x) =c $ for  $x$. Similarly since we can pick any $x > 0$ we have $f(x) = c$ for all $x \geq 0$.
+
+
+
+\section{Chapter 8}
+\subsection{Problem 8}
+\subsubsection{Question}
+For $n=0,1,2,\dots$, and $x$ real, prove that
+\[ \left| \sin{x n} \right| \leq n \left| \sin{x} \right|. \]
+Note that this inequality may be false for other values of $n$. For instance, 
+\[\left| \sin{\frac{1}{2} \pi} \right| > \frac{1}{2} \left| \sin{\pi} \right| . \]
+\subsubsection{Answer}
+We proceed by induction
+\begin{proof}
+\emph{Base Case:} For $n=0$ we have 
+\[ \left| \sin{x n} \right|= 0  \leq 0 = n \left| \sin{x} \right|. \]
+
+
+
+\emph{Inductive Step: } We first assume that 
+\[ \left| \sin{x n} \right| \leq n \left| \sin{x} \right|. \]
+No observe that
+\begin{eqnarray*} \left| \sin{x (n+1)} \right| &=& \left| \sin{(x n+x)} \right| \\
+&=& \left| \sin{(x n) \cos{(x)}  \pm \sin{(x)} \cos{(x n)}   } \right| \\
+&\leq& \left| \sin{(x n) \pm \sin{(x)}    } \right| \\
+&\leq& \left| \sin{(x n)} \right| + \left| \sin{(x)}    \right| \\
+&\leq&  n \left| \sin{x} \right|+ \left| \sin{(x)}    \right| \\
+&\leq& ( n +1) \left| \sin{x} \right|
+\end{eqnarray*}
+(Above we employ the fact that $|\cos(x)|\leq 1$)
+\end{proof}
+
+
+
+
+\end{document}

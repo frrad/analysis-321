@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{21 April 2010}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Problem 1}
+\subsection{Question}
+Construct a measurable set $E$ with $m(E) >0$ such that for interval $I \subset \mathbb{R}$, we have $m(E \cap I) <m(I)$.
+\subsection{Answer}
+Fix some sequence of real numbers say $\{x_i\}$ with $x_i > 0$ and  
+\[\sum_{k=1}^\infty x_k = y < 1\]
+Now, construct a set $\mathcal{C}_i$ by removing intervals (each of the same length) having a total length $x_i$ from the middle of each interval in the set $\mathcal{C}_{i-1}$. We set $\mathcal{C}_0=[0,1]$. Define $\mathcal{C}$ by the limit of the sequence of $\mathcal{C}_i$.
+
+The measure of $\mathcal{C}$ is clearly just $1-y$. I claim that for any  interval $I \subset \mathbb{R}$, we have $m(E \cap I) <m(I)$.
+
+\begin{proof}
+Clearly we may consider only intervals $I$ which are subsets of the unit interval since if $I \cap [0,1] \neq I $ the above property holds with no further verification necessary.
+
+This established fix some $I = [a,b]$ for $0\leq a \leq b \leq 1$. There is some subinterval of $I$ say $[c,d]$ which is not present in $E$ since for every $\mathcal{C}_i$ the longest interval completely contained in $\mathcal{C}_i$ has length strictly less than $1/2^i$. Thus $m(E \cap I ) \leq (b-a) - (d-c) < b-a = m(I)$ and the property holds as desired.
+\end{proof}
+
+\section{Problem 4}
+\subsection{Question}
+A nonempty subset $X$ of $\mathbb{R}$ is called \emph{perfect} provided it is closed and each neighborhood of any point in $X$ contains infinitely many points of $X$. 1) Prove that every perfect subset of $\mathbb{R}$ is uncountable. 2) Show that the middle-thirds Cantor set is perfect.
+\subsection{Answer}
+\begin{enumerate}
+\item
+\begin{proof}
+See Rudin Page 41
+
+Suppose $X$ is countable, and denote the points of $X$ by $x_1, x_2, x_3, \dots$. No construct a sequence of neighborhoods as follows.
+
+Let $V_1$ be any neighborhood of $x_1$. If $V_1$ consists of all $y \in \mathbb{R}$ such that $|y -x_1|<r$, the closure $\bar{V_1}$ of $V_1$ is the set of all $y \in \mathbb{R}$ such that $|y-x_1|\leq r$.
+
+Suppose $V_n$ has been constructed, so that $V_n \cap X$ is not empty. Since every point of $X$ is a limit point of $X$, there is a neighborhood $V_{n+1}$ such that $\bar{V}_{n+1} \subset V_n$, $x_n \notin \bar{V}_{n+1}$, and $V_{n+1}\cap X$ is nonempty.  By this last property $V_{n+1}$ satisfies our inductive hypothesis and we can continue the construction.
+
+Set $K_n-\bar{V}_n \cap X$. Since $\bar{V}_n$ is closed and bounded, $\bar{V}_n$ is compact. Since $x_n \notin K_{n+1}$, no point of $X$ lies in $\bigcup_1^\infty K_n$. Since $K_n \subset X$, this implies that $\bigcup_1^\infty K_n$ is empty. But, each $K_n$ is nonempty, and $K_n \supset K_{n+1}$, a contradiction since each $K$ is compact.
+
+ \end{proof}
+\item
+\begin{proof}
+The complement of the middle thirds cantor set is a countable union of open intervals. Thus, the complement is open and the Cantor set itself is closed. 
+
+If we fix some point $x$ in the Cantor set and some neighborhood of radius $\epsilon$ we notice that there are infinitely many ``boundary points" within $\epsilon$ of $x$. 
+
+Every time we remove an open interval from $B_\epsilon x$ we introduce at least one new boundary point into $B_\epsilon x$. Since these boundary points are all in the final Cantor set, and we remove infinitely many intervals from every neighborhood $\epsilon$ of $x$ during the construction of the Cantor set we may conclude that the middle thirds Cantor set is perfect.
+\end{proof}
+\end{enumerate}
+
+
+\end{document}

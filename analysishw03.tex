@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{17 January 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 6}
+\subsection{Problem 16}
+
+\subsubsection{Question}
+For $1<s<\infty$, define
+\[\zeta(s)=\sum_{n=1}^\infty \frac{1}{n^s}.\]
+(This is Riemann's zeta function, of great importance in the study of the prime numbers.) Prove that
+\begin{enumerate}
+\item \label{1} \[\zeta(s)=s \int_1^\infty \frac{[x]}{x^{s+1}} dx\]
+\item \label{2} \[ \zeta (s) = \frac{s}{s-1} - s \int_1^\infty \frac{x-[x]}{x^{s+1}} dx.\]
+\end{enumerate}
+where $[x]$ denotes the greatest integer $\geq x$.
+
+Prove that the integral in \ref{2} converges for all $s>0$.
+
+\emph{Hint:} To prove \ref{1}, compute the difference between the integral over $[1,N]$ and the $N$th partial sum of the series that defines $\zeta(s)$.
+\subsubsection{Answer}
+\begin{enumerate}
+\item \begin{proof} We take the expression
+\[s \int_1^\infty \frac{[x]}{x^{s+1}} dx\]
+and express it as a sum of integrals on the intervals $(n,n+1)$ to get
+\[s \left( \int_1^2 \frac{[x]}{x^{s+1}} dx + \int_2^3 \frac{[x]}{x^{s+1}} dx + \dots  \right) \]
+but since each such interval $[x]$ is the same, we just write
+\begin{equation}\label{sum}s \left( \int_1^2 \frac{1}{x^{s+1}} dx + \int_2^3 \frac{2}{x^{s+1}} dx + \dots  \right) \end{equation}
+Now we exploit the Fundamental Theorem of Calculus, computing
+\[\int_n^{n+1} \frac{n}{x^{s+1}} dx= n \left[ -\frac{x^{-s}}{s} \right]_n^{n+1}=n \left( -\frac{(n+1)^{-s}}{s} +\frac{n^{-s}}{s}\right)\]
+So, the summation in Equation \ref{sum} can, more explicitly be written as 
+\[ s \sum_{n=1}^\infty n \left( -\frac{(n+1)^{-s}}{s} +\frac{n^{-s}}{s}\right)= \sum_{n=1}^\infty  \left( \frac{n}{n^{s}} -\frac{n}{(n+1)^{s}} \right)\]
+However, grouping common denominators, we observe that the sum partially telescopes to yield more simply
+\[\sum_{n=1}^\infty \frac{1}{n^s}= \zeta(s)\]\end{proof}
+\item Having now proved  Part \ref{1} it suffices to show that 
+ \[ s \int_1^\infty \frac{[x]}{x^{s+1}} dx = \frac{s}{s-1} - s \int_1^\infty \frac{x-[x]}{x^{s+1}} dx.\]
+\begin{proof} 
+By the Fundamental Theorem of Calculus we have
+\[\int_1^\infty \frac{1}{x^s} dx=\frac{1}{s-1}\]
+So
+\begin{eqnarray*}
+\int_1^\infty \frac{x}{x^{s+1}} dx&=&\frac{1}{s-1}\\
+\Rightarrow s \int_1^\infty \frac{x}{x^{s+1}} dx&=&\frac{s}{s-1}\\
+\Rightarrow s \int_1^\infty \left( \frac{x-[x]}{x^{s+1}} + \frac{[x]}{x^{s+1}} \right) dx&=&\frac{s}{s-1}\\
+\Rightarrow s \int_1^\infty \left( \frac{x-[x]}{x^{s+1}} + \frac{[x]}{x^{s+1}} \right) dx&=&\frac{s}{s-1}\\
+\Rightarrow s \int_1^\infty  \frac{[x]}{x^{s+1}} dx &=&\frac{s}{s-1} -  s \int_1^\infty  \frac{x-[x]}{x^{s+1}} dx\\
+\end{eqnarray*}
+as desired\ \end{proof}
+ \end{enumerate}
+It remains now to show that the integral in Part \ref{2} converges.
+\begin{proof}
+Since for $x \in (1,\infty)$ we have
+\[0 \leq  \frac{x-[x]}{x^{s+1}} \leq \frac{1}{x^{s+1}}\]
+we know that
+\[\int_1^\infty \frac{x-[x]}{x^{s+1}} dx\]
+converges if and only if
+\[\int_1^\infty \frac{1}{x^{s+1}} dx\]
+converges.
+
+However, 
+\[\int_1^\infty \frac{1}{x^{s+1}} dx\]
+converges by the integral test (Problem 8) since we have already shown that the sequence
+\[\sum_{x=1}^\infty \frac{1}{x^{s+1}}\]
+is convergent for $1<s<\infty$.\end{proof}
+\section{Chapter 7}
+\subsection{Problem 2}
+
+\subsubsection{Question}
+If $\{f_n\}$ and $\{g_n\}$ converge uniformly on a set $E$, prove that $\{f_n+g_n\}$ converges uniformly on $E$. If, in addition, $\{f_n\}$ and $\{g_n\}$ are sequences of bounded functions, prove that $\{f_n g_n\}$ converges uniformly on $E$.
+\subsubsection{Answer}
+If $\{f_n\}$ and $\{g_n\}$ converge uniformly on a set $E$, then $\{f_n+g_n\}$ converges uniformly on $E$.
+\begin{proof}
+Let $\{f_n\}$ and $\{g_n\}$ converge uniformly  on $E$  to $f$ and $g$ respectively. 
+
+Then, by definition we have that for every $\epsilon > 0 $ there is a corresponding $N$ such that $n>N \Rightarrow | f_n(e) - f(e) | \leq \epsilon$ for any $e \in E$. And, moreover the same holds for $\{g_n\}$. That is, for any $\epsilon >0$ there exists some $M$ such that $m>M \Rightarrow |g_m(e) - g(e)| \leq \epsilon $ for any $e \in E$. But it is easy to see that these sums converge to $f+g$. 
+
+For, given $\epsilon$, let $\delta = \frac{\epsilon}{2}$. Then take the maximum of $N$, $M$ where $N$, $M$ are selected so that $n>N \Rightarrow | f_n(e) - f(e) | \leq \delta$ and  $m>M \Rightarrow |g_m(e) - g(e)| \leq \delta $ respectively. Say $\max{\{N,M\}}=K$.
+
+Then for all $n>K$ we have $|f_n(e)-f(e)| + |g_n(e)-g(e)| \leq 2 \delta = \epsilon \Rightarrow |f_n(e)-f(e) + g_n(e)-g(e)| \leq  \epsilon  \Rightarrow |(f_n(e) + g_n(e)) -(f(e) +g(e))| \leq  \epsilon$. This however is just the definition for uniform convergence of $\{f_n+g_n\}$.\end{proof}
+
+Now we wish to show that if $\{f_n\}$ and $\{g_n\}$ converge uniformly and are bounded on a set $E$ then $\{f_n g_n\}$ converges uniformly on $E$.
+
+\begin{proof} We begin as above by noting that by definition we have that for every $\epsilon > 0 $ there is a corresponding $N$ such that $n>N \Rightarrow | f_n(e) - f(e) | \leq \epsilon$ for any $e \in E$. And, moreover the same holds for $\{g_n\}$. That is, for any $\epsilon >0$ there exists some $M$ such that $m>M \Rightarrow |g_m(e) - g(e)| \leq \epsilon $ for any $e \in E$. 
+
+Now recall the identity (Page 50)
+\[f_n g_n - f g = (f_n - f)(g_n - g)+f(g_n - g)+ g (f_n - f).\]
+So, call the bounds on $\{f_n\}$ and $\{g_n\}$ $F$ and $G$ respectively. Now, fixing some $\epsilon>0$ there must be values $N$, $M$, $N'$, and $M'$ so that $n>N \Rightarrow |f_n-f| \leq \sqrt{\epsilon/3}$, $n>M \Rightarrow |g_n-g| \leq \sqrt{\epsilon/3}$, $n>N' \Rightarrow |f_n-f| \leq  \epsilon /(3G)$, and $n>M' \Rightarrow |g_n-g| \leq  \epsilon /(3F)$. So taking  $O = \max{\{N,M,N',M'\}}$ we see that $n>O \Rightarrow f_ng_n- f g =  (f_n - f)(g_n - g)+f(g_n - g)+ g (f_n - f) \leq \epsilon / 3 + \epsilon / 3 + \epsilon / 3 = \epsilon$.  Thus we have shown that $\{f_n g_n \}$ converges uniformly as desired.\end{proof}
+
+
+\subsection{Problem 3}
+
+\subsubsection{Question}
+Construct sequences $\{f_n\}$, $\{g_n\}$ which converge uniformly on some set $E$, but such that $\{f_n g_n\}$ does not converge uniformly on $E$ (of course, $\{f_n g_n\}$ must converge on $E$).
+\subsubsection{Answer}
+Let $\{f_n(x)\}= 1+ \frac{1}{n}$ and let $\{g_n(x)\}$ be the constant valued series with $\{g_n(x)\}=x$ for each $n$.
+
+Clearly both of these series converge uniformly. The series $\{f_n\}$ converges (uniformly) to $f(x)=1$. For any $\epsilon > 0$ take $1/\delta = N$ where $\delta \in \mathbb{Q}$ is some rational number expressible as $1/p \ p \in \mathbb{N}$ which has $ \delta <\epsilon$.  We see that for each $n>N$ we have $|f_n(e) - 1| \leq \epsilon$ for any $e \in \mathbb{R}$. So  $\{f_n\}$ converges uniformly.
+
+Since the second sequence $\{g_n\}$ is constant valued it is uniformly convergent (to its value) for clearly $|g_n(x)-g(x)|= 0 < \epsilon$ for any $n \in \mathbb{N}$, $\epsilon>0\ \epsilon \in \mathbb{R}$ and $x \in \mathbb{R}$.
+
+Now it remains only to show that the product $\{f_n g_n \} = x + \frac{x}{n} $ does not converge uniformly. 
+
+\begin{proof}We see that this sequence converges pointwise to $h(x) = x$ as fixing $x$ the sequence $x+\frac{x}{n} $ converges to $ x$.
+
+However this is not uniformly convergent, for suppose towards a contradiction that it is uniformly convergent.  Then pick some $\epsilon > 0$. By assumption there is some $N$ such that for each $n>N$ we have $|f_n(x)-x| \leq \epsilon$ so pick some $n_0 > N$. Now we see however that for $x = 2 n\epsilon$ and so $|f_n(x)-x|=|x+\frac{x}{n}-x|=|\frac{x}{n}|=|2 \epsilon|>\epsilon$. This is a contradiction.\end{proof}
+
+
+
+
+
+
+
+\end{document}

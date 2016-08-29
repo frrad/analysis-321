@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{25 January 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{setspace}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 7}
+\subsection{Problem 6}
+
+\subsubsection{Question}
+Prove that the series 
+\[\sum_{n=1}^\infty (-1)^n \frac{x^2+n}{n^2} \]
+converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.
+\subsubsection{Answer}
+The above series converges uniformly on every bounded interval $[a,b]$
+
+\begin{proof}
+\[\sum_{n=1}^\infty (-1)^n \frac{x^2+n}{n^2} = \sum_{n=1}^\infty \left( (-1)^n \frac{x^2}{n^2} +  \frac{(-1)^n }{n} \right)  = \sum_{n=1}^\infty (-1)^n \frac{x^2}{n^2} +\sum_{n=1}^\infty  \frac{(-1)^n }{n} \]
+Now we just observe that we know already the alternating harmonic series 
+\[\sum_{n=1}^\infty  \frac{(-1)^n }{n} \]
+converges. So, taken as a series of functions this converges uniformly. (\emph{Proof:} Weierstrass M-Test with itself.)
+
+It is moreover easy to see that on a bounded interval $[a,b]$ the series 
+\[ \left| (-1)^n \frac{x^2}{n^2} \right| \leq  \frac{b^2}{n^2}\]
+So this component converges uniformly by the Weierstrass M-Test.
+
+Since each component taken individually converges uniformly it must be that the entire sequence converges uniformly, and we have shown that 
+\[\sum_{n=1}^\infty (-1)^n \frac{x^2+n}{n^2} \]
+converges uniformly, as desired.
+\end{proof}
+
+Now we will show that the above sum does not converge absolutely for any value of $x$.
+\begin{proof}
+
+If we fix a value of $x$ the absolute value of the sum becomes 
+\[\sum_{n=1}^\infty \left( \frac{x^2}{n^2}+ \frac{1}{n} \right) \]
+but of course, for any value of $x$, $n$ we have 
+\[ \left( \frac{x^2}{n^2}+ \frac{1}{n} \right) \geq \frac{1}{n}\]
+since $x^2$ and $n^2$ are both positive.
+
+Hence, the sum
+\[\sum_{n=1}^\infty \left( \frac{x^2}{n^2}+ \frac{1}{n} \right) \]
+diverges by comparison with 
+\[\sum_{n=1}^\infty \frac{1}{n} \]
+
+
+\end{proof}
+
+\subsection{Problem 7}
+
+\subsubsection{Question}
+For $n= 1,2,3,\dots$, $x$ real, put
+\[f_n(x)= \frac{x}{1+n x^2}.\]
+Show that $\{f_n\}$ converges uniformly to a function $f$, and that the equation 
+\[f'(x)= \lim_{n \to \infty} f'_n(x)\]
+is correct if $x \neq 0$, but false if $ x = 0$.
+\subsubsection{Answer}
+I claim that $\{f_n\}$ converges uniformly to $f(x) = 0$
+\begin{proof}
+First we establish that $\{f_n\}$ converges pointwise to $0$. Fixing an $x$ we see that
+\[ \left| \frac{x}{1+nx^2} \right| \leq \left| \frac{x}{n x^2} \right| \leq \left| \frac{1}{x}\right| \frac{1}{n} \]
+and so by comparison test we have pointwise convergence to $0$.
+
+Now, for a fixed $n$ we observe that $\lim_{x \to \infty} f_n(x) = 0$. Since
+\[ \left| \frac{x}{1+nx^2}\right| \leq \left|  \frac{x}{nx^2}\right| = \frac{1}{n} \left| \frac{1}{x}  \right| \]
+and for fixed $n$ this last value clearly goes to $0$ as $|x|\to \infty$ .
+
+Since this is the case and each $f_n$ is smooth the extrema of some $f_n$ must occur at a point where the derivative is $0$. In particular
+\[\frac{d}{dx} \left( \frac{x}{1+ n x^2} \right) = \frac{1-n x^2}{\left(1+n x^2\right)^2}\]
+and
+\[\frac{1-n x^2}{\left(1+n x^2\right)^2}=0 \Leftrightarrow x = \pm \frac{1}{\sqrt{n}}. \]
+Evaluating at these points reveals
+\[f_n\left(\pm \frac{1}{\sqrt{n}} \right) = \pm \frac{1}{2\sqrt{n}} .\]
+Since these are the extrema of the function we have that 
+\[\sup \left| f_n(x) - f(x)\right| = \frac{1}{2\sqrt{n}}.\]
+Since $\lim_{n\to \infty} (2 \sqrt{n})^{-1}=0$ we have that $\{f_n\}$ converges uniformly by Theorem 7.9.
+
+
+\end{proof}
+
+
+\subsection{Problem 10}
+
+\subsubsection{Question}
+Letting $(x)$ denote the fractional part of the real number $x$ (see Exercise 16, Chap. 4, for the definition), consider the function
+\[f(x)= \sum_{n=1}^\infty \frac{(n x)}{n^2} \quad (x\mathrm{\ real}).\]
+Find all discontinuities of $f$, and show that they form a countable dense set. Show that $f$ is nevertheless Riemann-integrable on every bounded interval.
+\subsubsection{Answer}
+It will be useful to have a minor extension of Theorem 7.11
+\begin{lemma} \label{magic} If $f_n \to f$ uniformly on a set $E \subset X$ and $x$ is a limit point of $E$ such that 
+\[\lim_{t \to x^+} f_n(t) = A_n\]
+then 
+\[ \lim_{t \to x^+} f(t) = \lim_{n\to \infty}A_n  \]
+and similarly for left handed limits.
+ \end{lemma}
+
+\begin{proof}
+Construct a new series of functions say $g_n$ from $f_n$ defined by 
+\[
+g_n(t) = \left\{
+\begin{array}{lr}
+A_n& t<x\\
+f_n(t)& \mathrm{for\ } t>x
+\end{array}
+\right.
+\]
+The right handed limit at $x$ depends only on the function for values greater than $x$, so
+\[ \lim_{t \to x^+} f(t) = \lim_{t \to x^+} g(t)  . \]
+However, since $f_n$ converges uniformly, and $g_n$ is the same as $f_n$ on $t>x$ it converges uniformly for such values. Moreover it converges uniformly for values $t<x$ since $A_n$ converges by uniform convergence of $f_n$.
+
+Since we set the value of $g_n$ to be $\lim_{t \to x^+} g(t)$ on $t<x$ we have $\lim_{t \to x^+} g(t) = \lim_{t \to x^-} g(t) = \lim_{t \to x} g(t)$. By Theorem 7.11 $\lim_{t \to x} g(t)$ exists and is $\lim_{n \to \infty} A_n$. Hence, so does $\lim_{t \to x^+} f(t)$ and it is exactly $\lim_{n \to \infty}  A_n$ as claimed.
+
+
+
+The proof for left handed limits follows similarly.
+\end{proof}
+
+For convenience we say
+\[f_n(x)=\frac{(nx)}{n^2} \quad \mathrm{and} \quad F_N(x)=\sum_{n=1}^N f_n(x)\]
+
+We observe that $\{F_n\}$ converges uniformly since, 
+\[ \left| \frac{(n x)}{n^2} \right| \leq \frac{1}{n^2}.\]
+So, as
+\[\sum_{n=1}^\infty \frac{1}{n^2}\]
+converges, $\{F_n\}$ converges uniformly by Weierstrass M-Test.
+
+I claim that $f$ is discontinuous precisely on $\mathbb{Q} \backslash \{0\}$.
+\begin{proof}
+We will prove this for $x \in \mathbb{R}^+$ only, however the proof follows almost identically for $x \in \mathbb{R}^- $ and $0$.
+
+For any $m \in \mathbb{N}$ we know that on $[m/n,(m+1)/n)$
+\[f_n(x)=\frac{(n x)}{n^2} =  \frac{n x -m}{n^2}.\]
+(This follows directly from the definition of the fractional part of a real number.)
+Thus, it is clear that either
+\[\lim_{t \to x^-}f_n(t) = f_n(x)=\lim_{t \to x^+}f_n(t) \quad \mathrm{or} \quad \lim_{t \to x^-}f_n(t) =\frac{1}{n^2}\neq 0= \lim_{t \to x^+}f_n(t)\]
+with the first being the case when $x \neq m / n $ and the second occurring when $x = m/n$.
+
+Since the sum of the limit of two functions is the limit of their sum each $F_n$ must also have property
+\[\lim_{t \to x^-}F_n(t) = F_n(x)=\lim_{t \to x^+}F_n(t) \quad \mathrm{for\ }x\cdot m \notin \mathbb{N}\ m \leq n \] 
+\begin{equation}\label{ean} \lim_{t \to x^-}F_n(t) - \lim_{t \to x^+}F_n(t) = \sum_{\substack{x\cdot m \in \mathbb{N} \\  m \leq n}} \frac{1}{m^2} \neq 0  \quad \mathrm{for\ }x\cdot m \in \mathbb{N}\ m \leq n \end{equation}
+by induction.
+
+So, as we have already proven uniform convergence, Theorem 7.11 implies that for $x \in \mathbb{R} \backslash \mathbb{Q}$
+\[\lim_{n\to \infty}F_n(x) = f(x).\]
+This however is just the definition of continuity at $x$. Moreover by Lemma \ref{magic} Fact \ref{ean} implies that for all $x \in \mathbb{Q}$ 
+\[ \lim_{t \to x^-}f(t) - \lim_{t \to x^+}f(t) \neq 0.\]
+Hence, $f$ is discontinuous precisely on $\mathbb{Q}$ as claimed. 
+\end{proof}
+
+
+
+The function $f$ is Riemann-integrable in every bounded interval since, each $f_n(x)$ has only finitely many discontinuities in each bounded interval and is therefore Riemann-integrable. Each member of the sequence of partial sums $\{F_n\}$ is therefore also Riemann-integrable, being a finite sum of integrable functions. So, since $F_n(x)$ converges uniformly its limit is integrable as well by Theorem 7.16.
+
+\end{document}

@@ -1,0 +1,179 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{10 January 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 6}
+
+\subsection{Problem 7}
+
+\subsubsection{Question}
+Suppose $f$ is a real function on $(0,1]$ and $f \in \cal{R}$ on $[c,1]$ for every $c>0$. Define
+\[\int_0^1 f(x) dx = \lim_{c\to0}\int_c^1 f(x) dx\]
+if this limit exists (and is finite).
+
+\textbf{(a)} If $f\in\cal{R}$ on $[0,1]$, show that this definition fo the integral agrees with the old one.
+
+\textbf{(b)} Construct a funciton $f$ such that the above limit exists, although it fails to exist with $|f|$ in place of $f$.
+
+\subsubsection{Answer}
+\textbf{(a)} \begin{proof}By page 121 we know that $f$ must be bounded, say by $M$. We need to show that given $\epsilon >0$ we can find some $c$ such that 
+\[\int_c^1 f(x) dx \in B_\epsilon \left( \int_0^1 f(x) dx \right)\]
+So, by Theorem 6.12 (c) we have 
+\[\int_0^1 f(x) dx = \int_0^c f(x) dx + \int_c^1 f(x) dx\]
+and
+\[\int_0^c f(x) dx \leq M \cdot c\].
+
+Hence, 
+\[\int_0^1 f(x) dx \leq M \cdot c + \int_c^1 f(x) dx\]
+but since we can choose any $c>0$ and $M$ is fixed we can choose 
+\[c = \frac{\epsilon}{2M}\]
+which yields
+\[\int_0^1 f(x) dx \leq \frac{\epsilon}{2}+ \int_c^1 f(x) dx\]
+So, given $\epsilon$ we can always choose a $c$ such that 
+\[\int_c^1 f(x) dx \in B_\epsilon \left( \int_0^1 f(x) dx \right)\]
+as desired.\end{proof}
+
+\textbf{(b)} Considered the function which is defined to be $n (-1)^n$ on the last $6/(n^2\pi^2)$ of the interval [0,1] and zero at those $f(x)$ where $x=6/(n^2\pi^2)$. This function is well defined, since we know that $\sum_{n=1}^\infty 6/(n^2\pi^2) = 1 $. 
+
+More specifically the function has value $n(-1)^n$ on the open interval from $(p_n=1-\sum_{m=1}^{n-1} 6/(m^2\pi^2),p_{n+1}=1-\sum_{m=1}^n 6/(m^2\pi^2))$
+
+First we evaluate the integral of the function itself. Consider a partitioning of the interval $[0,1]$ at each $p_n \pm \epsilon$ for some $\epsilon >0$
+
+Then, the lower and upper sums corresponding to the intervals of the partition from $p_n - \epsilon$ to $p_{n+1} + \epsilon$ are the same, since the function is constant valued on these intervals. Moreover, as $\epsilon \to 0$ the value of the upper and lower sums both approach $n (-1)^n(p_{n+1}-p_n)$.
+
+Thus we can express the value of the integral as the sum of the series
+\[\sum_{n=1}^\infty \left( \frac{6}{n^2\pi^2}\right)n (-1)^n = \sum_{n=1}^\infty \left( \frac{(-1)^n 6}{n\pi^2}\right)  \]
+\[ =\frac{6}{\pi^2} \sum_{n=1}^\infty \left( \frac{(-1)^n }{n}\right)  \]
+but we recognize this sum as just a constant multiple of the alternating harmonic series. Hence, the integral converges.
+
+Now we examine the integral of the absolute value of the function. We argue similarly to the above, again partitioning the function at $p_n\pm \epsilon$ as defined above. The difference is that now, as we let $\epsilon \to 0$ the upper and lower sums both go to 
+\[\sum_{n=1}^\infty \left( \frac{6}{n^2\pi^2}\right)n  = \sum_{n=1}^\infty \left( \frac{ 6}{n\pi^2}\right)  \]
+\[  = \frac{6}{\pi^2} \sum_{n=1}^\infty  \frac{ 1}{n} \]
+and so the integral does not exist, as this is the harmonic series, which does not converge.
+
+In the above proof of divergence the important point is that the lower sums diverge. The fact that the upper sums diverge is an immediate consequence of this.
+
+So, we have demonstrated a function whose integral converges, but does not converge absolutely as desired.
+
+\subsection{Problem 8}
+
+\subsubsection{Question}
+Suppose $f \in \mathcal{R}$ on $[a,b]$ for every $b>a$ where $a$ is fixed. Define
+\[\int_a^\infty f(x) dx = \lim_{b \to \infty}{\int_a^b f(x) dx}\]
+if this limit exists (and is finite). In that case, we say that the integral on the left \emph{converges}. If it also converges after $f$ has been n replaced by $|f|$, it is said to converge \emph{absolutely}.
+
+Assume that $f(x) \geq 0$ and htat $f$ decreases monotonically on $[1, \infty)$. Prove that
+\[\int_1^\infty f(x) dx\]
+converges if and only if 
+\[\sum_{n=1}^\infty f(n)\]
+converges. (This is the so-called "integral test" for convergence of series.)
+\subsubsection{Answer}
+\begin{proof}
+We begin by showing ($\Rightarrow$) that 
+\[\int_1^\infty f(x) dx\]
+converges if 
+\[\sum_{n=1}^\infty f(n)\]
+converges.
+
+So, we assume to start that $\sum_{n=1}^\infty f(n)$ converges. Now consider the partition $P=\{p_n\ |\ p_n=n, n \in \mathbb{N}\}$. Since $f(x)$ decreases monotonically it must be that $inf\{f([p_n,p_{n+1}])\}=f(p_{n+1})$ and similarly that $sup\{f([p_n,p_{n+1}])\}=f(p_{n})$. Thus, the integral which we are trying to evaluate is bounded above by $\sum_{n=1}^\infty f(n)$ and below by $\sum_{n=2}^\infty f(n)$. 
+
+Now we observe that $\int_a^\infty f(x) dx$ may be written as a sum over the domain as 
+\[\sum_{n=1}^\infty \left( \int_{p_n}^{p_{n+1}} f(x) dx \right)\]
+We know moreover that each of these integrals exist, by Theorem 6.9. Also, since $f(x)$ is always positive each such integral must be positive. Therefore, the integral may be expressed as a sum of a nonnegative series which is bounded above. Hence, by Theorem 3.24 the integral exists.
+
+Now we prove ($\Leftarrow$) that if
+\[\int_1^\infty f(x) dx\]
+converges then 
+\[\sum_{n=1}^\infty f(n)\]
+converges.
+
+So assume now that $\int_1^\infty f(x) dx$ converges. Then we can prove that the summation $\sum_{n=1}^\infty f(n)$ satisfies the Cauchy criterion. We established above $\int_k^\infty f(x) dx$ is bounded above by $\sum_{n=k}^\infty f(n)$ and below by $\sum_{n=K+1}^\infty f(n)$. This implies that given a sum $\sum_{n=K+1}^\infty f(n)$ it is bounded above by the integral $\int_k^\infty f(x) dx$. Moreover, since the integral  $\int_k^\infty f(x) dx$ exists and $f$ is nonegative we know that it has the property given $\epsilon>0\  \exists M$ such that $\int_M^\infty f(x) dx< \epsilon$. For otherwise the integral would not exist and instead tend to infinity.
+
+So now we can apply the Cauchy criterion for series. Since an upper bound of the series has the property that given $\epsilon>0\  \exists M$ such that $\sum_M^\infty f(x) < \epsilon$. So must the series itself have this property.
+
+Thus, the sum converges as desired.
+
+\end{proof}
+\subsection{Problem 10}
+
+\subsubsection{Question}
+Let $p$ and $q$ be positive real numbers such that 
+\[\frac{1}{p}+\frac{1}{q}=1\]
+\subsubsection{Answer}
+\textbf{(a)} We will prove that If  $u\geq 0$ and $v \geq 0$ then 
+\[uv \leq \frac{u^p}{p}+\frac{v^q}{q}\]
+and that equality holds if and only if $u^p=v^q$
+\begin{proof}
+We begin by proving the special case of equality
+
+Assume that $u^p=v^q$. 
+\[\Leftrightarrow u=v^{q/p}\]
+\[\Leftrightarrow vu=v^{q/p+1}\]
+\[\Leftrightarrow vu=v^{q/p+1}\]
+\[\Leftrightarrow vu =v^{q(1/p+1/q)}\]
+\[\Leftrightarrow vu=v^q\]
+(Similarly we can show that $vu=u^p \Leftrightarrow u^p=v^q $.)
+Thus, $vu=v^q \Leftrightarrow u^p=v^q $ and we see moreover that 
+\[uv = \frac{u^p}{p}+\frac{v^q}{q} \Leftarrow vu=v^q\]
+since in this case we have 
+\[uv = v^q \left( \frac{1}{p}+\frac{1}{q} \right) \checkmark \]
+Also, if it is not the case that $vu=v^q$ then it is easy to see that $uv \neq \frac{u^p}{p}+\frac{v^q}{q}$ as for a sum of quotients by $p$ and $q$ to not contain $p$, $q$ we must have the numerators equal.
+
+
+Now we show that as we vary $u$ we must always have $uv \leq \frac{u^p}{p}+\frac{v^q}{q}$. For, compute the derivative of $uv$ with respect to $u$, and the derivative of $\frac{u^p}{p}+\frac{v^q}{q}$ with respect to $u$. We get $v$ and $u^{p-1}$ respectively. If we have $u^p=v^q$ then these are equal as demonstrated above (we showed that $u v = u^p$ in that case). In the case that $u$ is larger than this value then $u^{p-1}>v$ and in the case that $u$ is less than this value then $u^{p-1}<v$. 
+
+This argument can be repeated in an analogous manner for variations in $v$, and given any $p$ and $q$ we can find values for which $u^p=v^q$.
+
+Thus, we observe that 
+\[uv \leq \frac{u^p}{p}+\frac{v^q}{q}\]
+as desired\end{proof}
+
+
+\textbf{(b)} If $f \in \mathcal{R}(\alpha)$, $g \in \mathcal{R}(\alpha)$, $f\geq0$, $g \geq 0$, and
+\[\int_a^b f^p d\alpha = 1 = \int_a^b g^q d\alpha, \]
+then
+\[\int_a^b f g d\alpha \leq 1\]
+\begin{proof}
+
+If $0 \leq f \in \mathcal{R} (\alpha) $ and $0 \leq g \in \mathcal{R}(\alpha)$ then $f^p$ and $g^q$ are in $\mathcal{R}(\alpha)$ by Theorem 6.11. Also, we have $f g \in \mathcal{R}(\alpha)$ so we get
+\[\int_a^b f g d\alpha \leq \frac{1}{p} \int_a^b f^p d \alpha + \frac{1}{q} \int_a^b g^q d\alpha = 1\]
+as desired.\end{proof}
+
+
+\textbf{(c)} We prove H\"older's inequality
+\begin{proof}
+If $f$ and $g$ are complex valued then we get 
+\[\left|\int_a^b f g d\alpha \right| \leq \int_a^b |f||g| d\alpha.\]
+
+If $\int_a^b|f|^p \neq 0$and $\int_a^b|g|^q \neq 0$ then applying the previous part to the functions $|f|/c$ and $|g|/d$ where $c^p=\int_a^b|g|^q$ and $d^q = \int_a^b|g|^q $ gives what we wanted to show.
+
+\[\left| \int_a^b f g d \alpha  \right| \leq \left( \int_a^b |f|^p d\alpha  \right) ^{1/p}+ \left( \int_a^b |g|^q d\alpha  \right) ^{1/q}\]
+
+However, if one of the above is zero (say without loss of generality 
+$\int_a^b|f|^p =0$ then we just have 
+\[\int_a^b|f|(c|g|)d\alpha \leq c^q \frac{1}{q}\int_a^b|g|^q d\alpha\]
+for $c>0$. Taking the limit $c \to 0 $ we observe that the inequality is still true.
+
+\[\int_a^b |f||g| d\alpha = 0\]
+
+\end{proof}
+
+
+\end{document}

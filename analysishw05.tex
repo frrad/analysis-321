@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{30 January 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 7}
+\subsection{Problem 9}
+
+\subsubsection{Question}
+Let $\{f_n\}$ be a sequence of continuous functions which converges uniformly to a function $f$ on a set $E$. Prove that
+\[
+\lim_{n \to \infty} f_n(x_n) = f(x)
+\]
+for every sequence of points $x_n \in E$ such that $x_n \to x$, and $x\in E$. Is the converse of this true?
+\subsubsection{Answer}
+\begin{proof}
+We need to show that, given $\epsilon$ there exists some $N$ such that $n> N$ implies that $|f_n(x_n) - f(x)| < \epsilon$.  So fix some $\epsilon$. Since we know that each $f_n$ is continuous and that the sequence of $\{f_n\}$ converges uniformly we must have $f$ continuous by Theorem 7.12.
+
+By continuity of $f$  there is some $\delta$ such that $f( B_\delta x ) \subset B_{\epsilon/2} f(x) $. Also, by convergence of $x_n$ to $x$ we know that there exists some $M_1$ for which $n>M_1$ gives $x \in B_\delta x$. Further, since $\{f_n\}$ converges uniformly to $f$ there is some $M_2$ such that $n>M_2$ gives $|f_n(x) - f(x)| < \epsilon / 2$ for any $x$.
+
+Taking $N  = \max{(M_1,M_2)}$ we get, by the triangle inequality each $f_n(x_n)$ has at most $d(f_n(x_n),f(x)) = \epsilon$. So, we have established 
+\[
+\lim_{n \to \infty} f_n(x_n) = f(x)
+\]
+as desired.
+\end{proof}
+
+The converse is not true. Consider the following counterexample:
+\[f_n(x) = e^{ x / n}.\]
+As has been proven previously this sequence of continuous functions converges pointwise to $f(x)=1$ although it does not converge uniformly. Moreover, it is easy to see that given any sequence of points $x_n \in E$ such that $x_n \to x$, and $x\in E$ we get 
+\[\lim_{n \to \infty} f_n(x_n) = 1.\]
+
+By convergence of $x_n$ to $x$ we know that there exists $N$ with the property that each $n \geq N $ has $d(x_n, x) < \epsilon$. Next observe that  each $f_n$ is strictly increasing. So, since $f_n(x)$ converges to $1$ pointwise in particular we have 
+\[\lim_{n \to \infty} f_n(x - \epsilon) = 1 \quad \mathrm{and} \quad \lim_{n \to \infty} f_n(x + \epsilon) = 1 .\]
+That is, there exist $M_1$ and $M_2$ such that $m > M_1$ implies $d(f_m(x-\epsilon),1) < \epsilon$ and $d(f_m(x+\epsilon),1) < \epsilon$. Since we have increasing functions  it must be that for $M = \max{(M_1,M_2)}$ then $m>M$ implies $d(f_m(y),1) < \epsilon$ for all $m > M$ and given $y \in B_\epsilon x$.
+
+Thus, we conclude that  for each $n > \max{(M,N)}$ we have $d(f_n(x_n),1) < \epsilon$, that is
+\[\lim_{n \to \infty} f_n(x_n) = 1\]
+as claimed.
+
+
+\subsection{Problem 12}
+
+\subsubsection{Question}
+Suppose that $g$ and $f_n(n=1,2,3,\dots)$ are defined on $(0,\infty)$, are Riemann-integrable on $[t,T]$ whenever $0<t<T<\infty$, $|f_n|\leq g$, $f_n \to f$ uniformly on ever compact subset of $(0, \infty)$, and
+\[\int_0^\infty g(x) dx < \infty\]
+Prove that
+\[\lim_{n \to \infty} \int_0^\infty f_n(x) dx = \int_0^\infty f(x) dx.\]
+(See Exercises 7 and 8 of Chap. 6 for the relevant definitions.)
+
+This is a rather weak form of Lebesgue's dominated convergence theorem (Theorem 11.32). Even in the context of the Riemann integral, uniform convergence can be replaced by pointwise convergence if it is assumed that $f \in \mathcal{R}$. (See the articles by F. Cunningham in \emph{Math. Mag.}, vol. 40, 1967, pp. 179-186, and by H. Kestelman in \emph{Amer. Math. Monthly}, vol. 77, 1970, pp. 182-187.)
+\subsubsection{Answer}
+We know that on any $[t,T]$ the function $f$ is Riemann-integrable since each $f_n$ is Riemann-integrable on every such interval, and $\{f_n\}$ converges uniformly to $f$. In particular we have on any $[t,T]$ 
+\[ \lim_{n \to \infty} \int_t^T f_n(x) dx = \int_t^T f(x) dx\]
+by Theorem 2.16.
+
+Also, we know that for a given $x$ we have $|f(x)|\leq g(x)$ since each $f_n$ has $|f_n|\leq g$.  Thence, for any $t$, $T$ we have 
+\[  \int_t^T g(x) dx \geq \int_t^T |f(x)| dx,\]
+and since 
+\[\lim_{t\to 0} \int_t^T g(x) dx  = \int_0^T g(x) dx\]
+exists so must 
+\[\int_0^T f(x) dx\]
+as $g$ is greater or equal in absolute value to $f$.
+Furthermore,
+\[\lim_{T\to \infty} \int_0^T g(x) dx\]
+exists which implies that 
+\[\int_0^\infty f(x) dx\]
+does as well.
+
+We have established the existence of the integral and the fact that it is given by 
+\[ \lim_{n \to \infty} \int_0^\infty f_n(x) dx = \int_0^\infty f(x) dx\]
+just follows from the previously mentioned fact that 
+\[ \lim_{n \to \infty} \int_t^T f_n(x) dx = \int_t^T f(x) dx\]
+on any interval $[t,T]$ since the improper integral is just defined as a limit of such integrals. That is, since each term of the limit is equal, so must be the limit itself.
+
+\section{Chapter 8}
+\subsection{Problem 6}
+
+\subsubsection{Question}
+Suppose $f(x) f(y) = f(x+y)$ for all real $x$ and $y$.
+\begin{enumerate}
+\item Assuming that $f$ is differentiable and not zero, prove that
+\[ f(x) = e^{c x}\]
+where $c$ is constant.
+\item Prove the same thing, assuming only that $f$ is continuous. 
+\end{enumerate}
+\subsubsection{Answer}
+
+
+\begin{enumerate}
+\item Differentiability implies continuity. See Part \ref{later}.
+
+\item \label{later} It follows by induction that $f(x)^n = f(x \cdot n) $ for any $n \in \mathbb{N}$. Thus, we observe in particular that given $q \in \mathbb{N}$ we have
+\[f\left(\frac{1}{q} \right)^q = f(1) \Rightarrow q\log{f\left(\frac{1}{q}\right)} = \log{f(1)}.\]
+If we call $f(1)=e^c$ we get for any $q \in \mathbb{N}$
+\[ \log{f\left( \frac{1}{q} \right)  } = \frac{1}{q} \log{e^{c}} = \frac{c}{q} \]
+which implies in particular that for any such $1/q$
+\[f\left( \frac{1}{q} \right) = e^{c/q}.\]
+More generally we see that for all positive rational number $p/q \in \mathbb{Q^+}$ we have 
+\[f\left( \frac{p}{q} \right) = f\left( \underbrace{\frac{1}{q}+\cdots+\frac{1}{q}}_{p\mathrm{\ times}} \right)= f\left( \frac{1}{p} \right)^p = \left( e^{c/q}\right)^p =e^{c(p/q)}.\]
+
+Since we know that $f$ is continuous and for a dense subset of $\mathbb{R}^+$ it is equivalent to $e^{c x}$ then it must in fact be equal to $e^{cx}$ on all of $\mathbb{R}^+$ by a previous proof. Moreover we have 
+\[ f(-x)f(x) = f(0) = 1 \]
+So for $x>0$ we just get
+\[f(-x) = \left( e^{cx}\right)^{-1}= e^{-cx}\]
+and $f(x)=e^{cx}$ on $\mathbb{R}^- $ as well. Finally, we must prove that $f(0)=1$ and that $f(1)\neq 0$.
+
+The first is easy to see, for $f(0)f(x)= f(x) \Rightarrow f(0)= 0 \mathrm{\ or\ } f(0)=1$. However, if the former is the case then $f(x)=0$ for all $x$, a contradiction.
+
+The latter too is fairly clear, since $f(1)=0$ would imply $f(x)=0$ for each $x$ by an argument identical to the one used above to establish $f(x)= e^{c x}$.
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{1 March 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 9}
+\subsection{Problem 7}
+
+\subsubsection{Question}
+Suppose that $f$ is a real-valued function defined in an open set $E \subset \mathbb{R}^n$, and that the partial derivatives $D_1 f , \dots, D_n f$ are bounded in $E$. Prove that $f$ is continuous in $E$.
+
+\emph{Hint: }Proceed as in the proof of Theorem 9.21.
+\subsubsection{Answer}
+\begin{proof}
+This is very similar to Theorem 9.21. If we repeat Rudin's argument from that theorem we get
+\[f(x+h)-f(x) = \sum_{j=1}^n[f(x+v_j)-f(x+v_{j-1})]\]
+given $x+h \in E $ and $f(x+v_j)-f(x+v_{j-1}) =h_jD_jf(x+v_{j-1}+\theta_j h_j e_j) $ with $\theta \in (0,1)$.
+
+From the problem we have that there exists some $M > 0$ such that $|D_j f(x)| \leq M$ for any $j = 1, \dots, n$ and any $x \in E$. Thus
+\[|f(x+v_j) - f(x+v_{j-1})| \leq M|h_j|\]
+for any $j$. The triangle inequality gives us
+\[|f(x+h)-f(x)| \leq \sum_{j=1}^n M|h_j| = M \sum_{j=1}^n |h_j|.\]
+
+\[h \to 0 \Rightarrow \sum_{j=1}^n |j_j| \to 0\] 
+and
+\[|f(x+h)-f(x)| \to 0\]
+demonstrating that $f$ is continuous at $x$ as desired.\end{proof}
+\subsection{Problem 9}
+
+\subsubsection{Question}
+If $f$ is a differentiable mapping of a \emph{connected} open set $E \subset \mathbb{R}^n$ into $\mathbb{R}^m$, and if $f'(x)=0$ for every $x \in E$, prove that $f$ is constant in $E$.
+\subsubsection{Answer}
+I will first demonstrate that $f$ is constant on any convex open neighborhood in $E$. Then I will show that the connectedness of $E$ suffices to extend this result to all of $E$. 
+
+\begin{proof}
+Theorem 9.19 states that if $f$ maps a convex open set $E \subset \mathbb{R}^n$ into $\mathbb{R}^m$, $f$ is differentiable in $E$ and there is a real number $M$ such that 
+\[||f'(x)||\leq M\]
+ for every $x \in E $ then 
+\[|f(b)-f(a)| \leq M |b-a|\] for all $a, b$ in $E$.
+
+So by this theorem $f$ is constant on each convex subset of $E$.
+\end{proof}
+
+Now it remains only to demonstrate that this result extends to connected regions. 
+
+\begin{proof}
+Open balls are convex sets.  Thus, the subset of $E$ on which $f$ takes some value $c$ is open if it is nonempty since for any point in this set there exists some open ball surrounding it in $E$ (by openness of $E$) and on that ball the function takes value $c$ (by convexity of balls). Similarly the subset of $E$ where $f$ takes any value $d\neq c$ is open.
+
+Now note that the intersection of these sets must be empty since the function $f$ is well defined. Also, one of these sets must me nonempty.
+
+But, as the space $E$ is connected one of these sets must be empty for any choice of constant $c$. Otherwise we could write $E$ as their disjoint union. We therefore observe that $f$ is constant valued over all $E$ since, by well definition of $f$ there exists some $c$ for which the set of all points on which $f$ evaluates to $c$ is nonempty (just take $c=f(x)$ for some arbitrary $x \in E$).
+\end{proof}
+\subsection{Problem 10}
+
+\subsubsection{Question}
+If $f$ is a real function defined in a convex open set $E \subset \mathbb{R}^n$, such that $(D_1 f)(x)=0$ for every $x \in E$, prove that $f(x)$ depends only on $x_2, \dots, x_n$.
+
+Show that the convexity of $E$ can be replaced by a weaker condition, but that some condition is required. For example, if $n=2$ and $E$ is shaped like a horseshoe the statement may be false.
+\subsubsection{Answer}
+\begin{proof}
+If we restrict our function $f$ to only take points which have form $(x, \overline{x_2}, \overline{x_3}, \dots, \overline{x_n})\in E$ for arbitrary $x$ and fixed other variables we obtain a function $g: \mathbb{R}^n \to \mathbb{R}^m$ which depends only on the value of $x_1$. We can make this into a function in one variable say $g'(x_1) = g(x_1,\overline{x_2}, \overline{x_3}, \dots, \overline{x_n}))$. The partial derivative with respect to $x_1$ of this restriction $g$ is still just 0 and furthermore the derivative of $g'$ is 0 as well.
+
+Note now that since the intersection of two convex sets is convex, the subset of $E$ (a convex set) which intersects the convex subset of $\mathbb{R}^n$ given by $x_2 = \overline{x_2}, x_3 = \overline{x_3}, \dots, x_n = \overline{x_n}$ is itself convex.  This is the set on which $g'$ is defined. Thus, we can apply Theorem 9.19 as in the above proof. Doing so we realize that $g$ is a constant valued function with respect to $x_1$. Thus, we can surmise that the original function $f$ did not depend on the value of $x_1$, only on the values of $x_2,x_3,\dots,x_n$.
+\end{proof}
+
+In the proof above the only time we used convexity of $E$ was to show that the set on which $g'$ was defined was convex, in order to apply Theorem 9.19. We can weaken this condition however, admitting all sets $E$ such that all subsets  say $K=E \cap \{(x_1,x_2, \dots, x_n) | x_2 = \overline{x_2}, x_3 = \overline{x_3}, \dots, x_n = \overline{x_n} \}$  are connected. Then, we can apply our result from the previous exercise in a similar manner to how we apply 9.19 in the above proof. The rest of the proof for this more general result follows similarly. 
+
+\end{document}

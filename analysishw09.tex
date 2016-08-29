@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{7 April 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+\section{Problem 3}
+\subsection{Question}
+A set of real numbers is said to be a \emph{$G_\delta$ set} if it is the countable intersection of open sets 
+
+Show that for any bounded set $E \subset \mathbb{R}$, there is a $G_\delta$ set for which
+\[E \subseteq G \quad \mathrm{and\ } m^*(G)=m^*(E).\]
+\subsection{Answer}
+\begin{proof}
+By the definition of outer measure for any $\epsilon = 1/n$ there exists some open cover of $E$ say $G_n$ such that
+\[m^*(E)<\sum_{I \in G_n} l(I) \leq m^*(E)+\epsilon\]
+If we let $G=\bigcap_{i=1}^\infty G_i$ I claim that $G$ is $G_\delta$ and moreover that it has $E \subseteq G$ and $m^*(G)=m^*(E)$.
+
+It is clear that $G$ is $G_\delta$ since it is defined as the intersection of countably many open covers. Moreover, since each $G_n$ has $E$ as a subset (by definition of cover) their intersection must also have $E \subseteq G$.
+
+Finally, we must verify that $m^*(G)=m^*(E)$. Since $E \subseteq G$ we have by a proof in class that $m^*(G)\geq m^*(E)$. By definition of $G$ we have that $G \subseteq G_n$ for all $n$. So, $m^*(G)\leq m^*(G_n)$. Therefore, since given $\delta$ there is some $G_n$ with $m^*(G_n)-m^*(E)<\delta$ it follows that $m^*(G)\leq m^*(E)$. Hence $m^*(E)=m^*(G)$ as desired.\end{proof}
+
+
+\section{Problem 6}
+\subsection{Question}
+Let $E\subset\mathbb{R}$ be a measureable set with $m(E)>0$. Prove that for any $\alpha<1$ there is an open interval $I \subset \mathbb{R}$ such that $m(E \cap I) > \alpha m(I)$.
+\subsection{Answer}
+\begin{proof}
+First consider the case where $m(E)<\infty$. By definition of outer measure, for any $\epsilon >0$ there exists some open cover of $E$ say $\{A_k\}$ such that 
+\[m(E)\leq\sum_{k=1}^\infty l(A_k) <  \epsilon + m(E)\] 
+Moreover, we can reduce any such open cover to a open cover by disjoint open sets $\{A'_k\}$ by taking $A'_1=A_1$ and $A'_i=A_i \setminus \bigcup_{j=1}^{i-1} A_j$. Finally we can take each $A'_i$ to be an interval since all open sets in $\mathbb{R}$ are countable unions of open intervals and countable collections of countable things are countable. 
+
+Suppose towards a contradiction that there exists $\alpha < 1$ such that $m(E \cap I) \leq \alpha m(I)$ for all open intervals $I$. Since each $A'_i$ is an interval they are all measurable. Hence $E \cap A'_i$ is measurable for all $i$, and by the countable additivity of measurable sets we have 
+\[m(E)=\sum_{i=1}^\infty m(E\cap A'_i)\leq \alpha \sum_{i=1}^\infty m(A'_i)<\alpha(\epsilon + m(E))\] 
+Since $\epsilon>0$ was arbitrary and $\alpha<0$ this is a contradiction.
+
+In the case where $m(E) = \infty$ consider the set  $E'_x=E \cap (-x,x)$ for $x \in \mathbb{R}^+$. For any $x$ this set is measurable since intervals are always measurable and the intersection of two measurable sets is measurable. Moreover, there must be some $x$ such that $m(E'_x)\neq 0$ since the measure of $E$ is nonzero. Fixing one such $E'_x$ we can apply the proof from the first case to demonstrate that there exists some interval such that $m(E \cap I)>\alpha m(I)$ for any $\alpha<1$.
+\end{proof}
+
+\section{Problem 7}
+\subsection{Question}
+Let $E \subset \mathbb{R}$ be a measurable set with $m(E)>0$. Prove that the set
+\[E-E=\{x-y: x,y \in E\}\]
+contains an interval.
+
+{\bf Hint: }take $\alpha>3/4$ and let $I$ be as in the previous exercise. Then $E-E$ contains $(-\frac{1}{2}m(I),\frac{1}{2}m(I))$.
+\subsection{Answer}
+\begin{proof}
+By the previous exercise there exists some interval $I =(a,b)\subset \mathbb{R}$ such that $m(I \cap E) > 3/4 m(I)$. I claim that $(-\frac{1}{2}m(I),\frac{1}{2}m(I)) \subset E-E$. Assume towards a contradiction that there is some $x \in (-\frac{1}{2}m(I),\frac{1}{2}m(I))$ such that $x \notin E-E$. Then for any $y \in E\cap I$ we have $y-x \notin E\cap I$ and $y+x \notin E\cap I$. 
+
+Since the measure is invariant under translation we know $m(I\cap E+x)=m(I\cap E)>3/4m(I)$. These are disjoint sets, each of which is measurable, so $m(I\cap E+x)+m(I\cap E)=m((I\cap E+x) \cup (I\cap E))>3/2m(I)=3/2(b-a)$. Yet $(I\cap E+x) \cup (I\cap E)\subset (a,b+x)$ and $m(a,b+x)=b+x-a<3/2(b-a)$. Contradiction.
+\end{proof}
+\end{document}

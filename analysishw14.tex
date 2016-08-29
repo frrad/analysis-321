@@ -1,0 +1,60 @@
+\documentclass[10pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{14 May 2010}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+\section{Problem 3}
+\subsection{Question}
+Prove that the Monotone Convergence Theorem for nonnegative measurable functions implies Fatou's Lemma (note that in class we proved that Fatou implies MCT)
+\subsection{Answer}
+\begin{proof}Let $\{f_n\}$ be a sequence of a functions and let $f =\lim_{ n \to \infty}f_n$. Now define a new sequence of functions 
+\[g_l(x) = \inf_{n \geq l} f_{n}(x).\]
+ The sequence $\{g_n\}$ is strictly increasing but also converges to $f$ by construction. Finally observe that 
+\[\int g_l \leq \inf_{n\geq l } \int f_n\]
+since $g_l \leq f_n$ for all $l \leq n$. Therefore, by the monotone convergence theorem
+\[\int f = \lim_{l \to \infty} \int  g_l  \leq  \lim_{l \to \infty} \inf_{n \geq l} \int f_n = \lim \inf \int f_n .\]
+But this is what we wanted to prove.
+\end{proof}
+
+\section{Problem 5}
+\subsection{Question}
+Compute the following limits and justify their calculations
+\begin{enumerate}
+\item \[\lim_{n \to \infty} \int_0^1 \frac{1+nx^2}{(1+x^2)^{n}} dx\]
+\item \[ \lim_{n \to \infty}  \int_a^\infty \frac{n}{ 1+n^2x^2} dx \]
+(The answer depends on whether $a>0$, $a=0$, or $a<0$. How does this accord with the various convergence theorems?)
+\end{enumerate}
+\subsection{Answer}
+\begin{enumerate}
+\item Since the sequence of functions
+\[f_n = \frac{1+nx^2}{(1+x^2)^{n}} \]
+by the bounded convergence theorem we know that $\lim_{n \to \infty} \int f_n = \int f$ for $f = \lim_{n \to \infty} f_n$.
+\[\lim_{n \to \infty} \int_0^1 \frac{1+nx^2}{(1+x^2)^{n}} dx = \int_0^1 0 dx = 0 \]
+\item Recall from basic calculus that
+\begin{eqnarray*} \int_a^\infty \frac{n}{ 1+n^2x^2} dx &=& \left. tan^{-1}(n x) \right]_a^\infty \\ &=& \frac{\pi}{2} -  tan^{-1} (n a)\end{eqnarray*}
+Thus, given $a>0$ we have 
+\begin{eqnarray*} \lim_{n\to\infty} \int_a^\infty \frac{n}{ 1+n^2x^2} dx  &=& \lim_{n\to \infty} \left( \frac{\pi}{2} -  tan^{-1} (n a)\right) \\ &=& 0\end{eqnarray*}
+Similarly if $a<0$
+\begin{eqnarray*} \lim_{n\to\infty} \int_a^\infty \frac{n}{ 1+n^2x^2} dx  &=& \lim_{n\to \infty} \left( \frac{\pi}{2} -  tan^{-1} (n a)\right) \\ &=& \pi \end{eqnarray*}
+and if $a=0$
+\begin{eqnarray*} \lim_{n\to\infty} \int_a^\infty \frac{n}{ 1+n^2x^2} dx  &=& \lim_{n\to \infty} \left( \frac{\pi}{2} -  tan^{-1} (n a)\right) \\  &=& \lim_{n\to \infty} \left( \frac{\pi}{2} -  tan^{-1} (0)\right)  \\ &=& \frac{\pi}{2} \end{eqnarray*}
+The result for $a>0$ agrees with what we would expect from the bounded convergence theorem. In fact we can get this result in the same way as part 1. The other two results don't disagree with any of the convergence theorems since the point $x=0$ causes their hypotheses to fail.
+
+\end{enumerate}
+
+\end{document}

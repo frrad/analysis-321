@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{7 May 2010}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+\section{Problem 1}
+\subsection{Question}
+Suppose that $f$ is a function that is continuous on a closed set $F$ of real numbers. Show that $f$ has a continuous extension to all of $\mathbb{R}$. ({\bf Hint}: express $\mathbb{R} \backslash F$ as a countable union of disjoint intervals and define $f$ to be linear on the closure of these intervals). 
+\subsection{Answer}
+Let the extension of $f$ to $\mathbb{R}$ say $\bar{f}$ be as suggested above. Since $\bar{f}$ is a piecewise defined function which is continuous on each interval, and whose intervals agree on the ends $\bar{f}$ is itself continuous as claimed.
+
+\section{Problem 4}
+\subsection{Question}
+State and prove an extension of Lusin's theorem to the case that $E$ has infinite measure. 
+\subsection{Answer}
+Let $f$ be a real-valued measurable function on a set $E$ with $m(E)=\infty$. Then for each $\epsilon > 0$, there is a continuous function $g$ on $\mathbb{R}$ and a closed set $F$ containing $E$ for which 
+\[f=g \mathrm{\ on\ } F \quad \mathrm{and} \quad m(E \sim F) < \epsilon\]
+\begin{proof}
+If we fix an infinite set of compact intervals $\{I_n\}$ each separated by $\epsilon / 2^n$. By the finite case of Lusin's Theorem we can find continuous functions $g_n$  and subsets of  $I_n \cap E$ which are closed, and have measure within $\epsilon / 2^n$ of $I_n \cap E$ such that $g_n=f$ on each of these sets.
+
+By the previous exercise there is a continuous function which takes on the value of $g_n$ on each of our compact intervals. Since the measure of $E$ less all our intervals is $2 \epsilon$ by construction, with $\epsilon$ arbitrary, we are done.
+\end{proof}
+\section{Problem 7}
+\subsection{Question}
+Does the Bounded Convergence Theorem hold for the Riemann integral? 
+\subsection{Answer}
+No. We can construct an absolutely bounded sequence of (Riemann) integrable functions which converges to a function which is not integrable. In particular set
+\[f_n = \left\{ \begin{array}{ll} 0 & x \in R_n \\ 1 & \mathrm{otherwise} \end{array}\right. \]
+Where we put $R_n$ the first $n$ rational numbers under some fixed ordering. Any $f_n$ is integrable since it has only finitely many discontinuities. However this sequence of functions converges to 
+\[f_n = \left\{ \begin{array}{ll} 0 & x \in \mathbb{Q} \\ 1 & \mathrm{otherwise} \end{array}\right. \]
+which is not integrable.
+
+\section{Problem 9}
+\subsection{Question}
+Let $f$ be a nonnegative bounded measurable function on a set $E$ of finite measure. Assume $\int_E f = 0$. Show that $f = 0$, a.e. on $E$. 
+\subsection{Answer}
+\begin{proof}
+Suppose towards a contradiction that there exists some subset of $E$ say $F$ having nonzero measure such that $f>0$ on $F$. Then, there must exist a set $G$, $\epsilon>0$ such that $G \subset F$ and $f> \epsilon$ on $G$  and $m(F\backslash G)< \delta$ by Lusin.
+
+Hence, restricted to $G$ we get $f \leq \epsilon \cdot \mathbf{1}_G $, but this is a contradiction to monotonicity of the Lebesgue integral and our assumption that $\int_E f =0$.
+\end{proof}
+
+
+\end{document}

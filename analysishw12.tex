@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{28 April 2010}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+\section{Problem 2}
+\subsection{Question}
+Suppose $f$ is a real-valued function on $\mathbb{R}$ such that $f^{-1}(c)$ is measurable for each $c \in \mathbb{R}$. Is $f$ necessarily measurable?
+\subsection{Answer}
+No. Consider the function $f: \left[0,1\right] \to [0,2]$ defined by 
+\[f(x) = \left\{ \begin{array}{ll} x & x \notin \mathcal{V} \\ x+1 & x \in \mathcal{V} \end{array} \right.\]
+For $\mathcal{V}$ the Vitali set. Since this function is injective we have $f^{-1}(c)$ measurable for each $c \in \mathbb{R}$. However, taking $f^{-1}([1,2])$ we recover the Vitali set, so the function is not measurable.
+
+\section{Problem 4}
+\subsection{Question}
+Let $\{f_n\}$ be a sequence of measurable functions defined on a measurable set $E$. Define $E_0$ to be the set of points $x$ in $E$ at which $\{f_n(x)\}$ converges. Is the set $E_0$ measurable?
+\subsection{Answer}
+Yes. 
+\begin{proof}
+By the Cauchy criterion the set of points in $E$ at which $\{f_n(x)\}$ converges say $X$ is precisely the set of all $x$ such that for any $\epsilon > 0$ there exists an $N$ which has $ |f_n(x)- f_m(x)| < \epsilon$  given $m,n>N$. Moreover the function  $g_{n,m}=|f_n-f_m|$ is measurable for any $n,m$ since it is the difference of two measurable functions composed with the absolute value function which is continuous.
+
+This established we note that we can write 
+\[E_0 =\bigcap_{\epsilon \in \mathbb{Q}} \bigcup_{N \in \mathbb{N}} \bigcap_{m,n > N} g_{m,n}^{-1}\left([0, \epsilon)\right)\]
+so, $E_0$ is measurable as claimed.
+\end{proof}
+
+
+
+\section{Problem 8}
+\subsection{Question}
+(DiniÕs theorem) Let  $\{f_n \}$ be an increasing sequence of continuous functions on $[a, b]$ that converges pointwise on $[a, b]$ to the continuous function $f$ on $[a, b]$. Show that the convergence is actually uniform on $[a, b]$.
+
+ 
+(Hint: let $\epsilon > 0$. For each integer $n > 0$, define $E_n = \{x \in [a, b] : f (x)-f_n (x) < \epsilon\}$. Show $\{E_n\}$ is an open cover and use compactness of $[a, b]$.) 
+
+\subsection{Answer}
+\begin{proof}
+Let $\epsilon > 0$ and define $E_n = \{x \in [a, b] : f (x)-f_n (x) < \epsilon\}$. Clearly $\{E_n\}$ covers $[a,b]$ since by definition of (pointwise) convergence, given $\epsilon > 0, x$ there exists an $n$ such that $|f_n(x)-f(x)| < \epsilon$ and by the increasing property of this sequence $f(x)-f_n(x)\geq0$. Furthermore each $E_n$ is open since it is the preimage of the open set $(-1,\epsilon)$ under the continuous function $f(x)-f_n(x)$.
+
+Now, by compactness of $[a,b]$ this open cover has a finite subcover. Moreover, since the sequence is increasing we have $E_n \subseteq E_{n+1}$. Thus, there must exist some $n$ such that $E_n= [a,b]$. Since $\epsilon$ was arbitrary this suffices to prove uniform convergence.
+\end{proof}
+
+\section{Problem 9}
+\subsection{Question}
+Let $I$ be an interval and let $f: I \to \mathbb{R}$ be nondecreasing. Show that $f$ is measurable by first showing that for every integer $n>0$, the function $x \mapsto f(x) + x/n$ is measurable.
+\subsection{Answer}
+\begin{proof}
+Every $g_n=f(x)+x/n$ is strictly increasing (and thus injective). Therefore if we take $k = \mathrm{inf} f(x) \geq c $ then $g_n^{-1}((c,\infty))= (g_n^{-1}(k), \infty)$ or  $g_n^{-1}((c,\infty))= [g_n^{-1}(k), \infty)$ and $g_n$ is measurable. So, since $h_n=x/n$ is measurable $f=g_n-h_n$ is measurable, as desired.
+\end{proof}
+\end{document}

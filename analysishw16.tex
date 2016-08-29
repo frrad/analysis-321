@@ -1,0 +1,97 @@
+\documentclass[10pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{28 May 2010}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+\section{Problem 3}
+\subsection{Question}
+For $f \in L^1[a,b]$, define
+\[||f||_* = \int_a^b x^2|f(x)| dx.\]
+Show that this is a norm on $L^1[a,b]$.
+\subsection{Answer}
+We must verify the Triangle Inequality, Positive Homogeneity, and Nonnegativity. Let $f, g \in L^1[a,b]$.
+
+{\bf Triangle Inequality}
+
+\begin{proof}
+\[||f+g||_* = \int_a^b x^2 |f(x) + g(x)| dx \]
+and by properties of the integral (monotonicity, linearity) we have
+\begin{eqnarray*} \int_a^b x^2 |f(x) + g(x)| dx  &\leq& \int_a^b x^2 |f(x)| dx + \int_a^b  x^2 | g(x)|  dx\\
+&=&||f||_*+||g||_*
+\end{eqnarray*}
+and so
+\[||f+g||_* \leq = ||f||_*+||g||_*\]
+as claimed.
+\end{proof}
+
+{\bf Positive Homogeneity }
+
+\begin{proof}
+\[||\alpha f||_* = \int_a^b x^2 |\alpha f(x)| dx\]
+so by linearity of the integral
+\[\int_a^b x^2 |\alpha f(x)| dx  =  |\alpha| \int_a^b x^2 | f(x)| dx = |\alpha| ||f||_*\]
+and 
+\[||\alpha f||_* = \alpha||f||_*\]
+as claimed.
+\end{proof}
+
+{\bf Nonnegativity }
+
+\begin{proof}
+\[||f||_* = \int_a^b x^2 ||f(x) || dx\]
+so, since we are integrating a nonnegative function we get
+\[ \int_a^b x^2 ||f(x) || dx \geq\]
+and 
+\[||f||_*  \geq 0\]
+as claimed.
+
+Furthermore, if $f =0$ we have
+\[||f||_* = \int_a^b  x^2 f(x) dx = \int_a^b 0 =0 .\]
+Conversely, given $||f||_*=0$ for some $f$, we have
+\[ ||f||_*=\int_a^b x^2 f(x) dx = 0\]
+and by a previous exercise (Problem 9 from homework due 7 May) this implies that $x^2 f(x) =0 $ for almost every $x \in [a,b]$. Since $x \neq 0 $ for $x \neq 0$ we must have $f(x)=0$ for almost every $x \in [a,b]$. We may therefore conclude that $||f||_* = 0$ if and only if $f(x)=0$ almost everywhere in $[a,b]$ as desired.
+\end{proof}
+
+
+
+\section{Problem 5}
+\subsection{Question}
+Assume $m(E) < \infty$. For $f \in L^\infty (E)$, show that
+\[\lim_{p \to \infty} ||f||_p = ||f||_\infty .\]
+\subsection{Answer}
+We shall assume that the function $f$ is simple. The extension to arbitrary measurable functions $f$ follows directly\footnote{We can fix some sequence of simple functions which converge to $f$. Since each of these have the claimed property then their limit must as well.} from the simple function approximation theorem.
+\begin{proof}
+If $M$ is the essential upper bound, then $f(x)=M$ on some set of nonzero measure say $A$. Thus, since
+\[||f||_p  =  \left[ \int_E |f|^p \right] ^{1/p}  \]
+we have
+\[    \left[ m(A) M^p \right] ^{1/p}  \leq ||f||_p \leq    \left[ m(E) M^p \right] ^{1/p}  \]
+and so
+\[   M \left[ m(A)  \right] ^{1/p}  \leq ||f||_p \leq  M  \left[ m(E) \right] ^{1/p}  .\]
+Since in the limit $p \to \infty$ $x^{1/p} =1 $ for any $ x  > 0 $ we have
+\[\lim_{p \to \infty} ||f||_p = ||f||_\infty \]
+as claimed.
+\end{proof}
+
+\section{Problem 6}
+\subsection{Question}
+For $1 \leq p \leq \infty$, if $q$ is the conjugate of $p$, prove that for any $f \in L^p(E)$:
+\[||f||_p = \max_{g \in L^q(E), ||g||_q \leq 1 } \int_E fg .\]
+\subsection{Answer}
+\begin{proof}We have from the text that the conjugate function $g=f^*$ has the desired properties i.e. $||g||_q \leq 1$ and $||f||_p = \int_E f g$. Therefore it remains only to show that there exists no function $g$ such that $||g||_q \leq 1$ and $\int_E fg > ||f||_p$. But this is just a trivial consequence of H\"older's Inequality.\end{proof}
+
+\end{document}

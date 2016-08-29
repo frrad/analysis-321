@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{23 November 2009}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 5}
+\subsection{Problem 6}
+
+\subsubsection{Question}
+
+Suppose
+\begin{enumerate}
+\item $f$ is continuous for $x\geq 0$
+\item $f'(x)$ exists for $x>0$
+\item $f(0)=0$
+\item $f'$ is monotonically increasing
+\end{enumerate}
+Put
+\[g(x)=\frac{f(x)}{x} \ \ (x>0)\]
+and prove that $g$ is monotonically increasing.
+
+
+\subsubsection{Answer}
+\begin{proof}
+We will compute the derivative and show that it is always $g'(x) \geq 0$. The derivative of $g(x)$ is given by the quotient rule to be
+\[g'(x)=\frac{xf'(x)-f(x)}{x^2}\]
+The denominator is clearly always positive as we know it is the square of some real number $x>0$, so in order to show that the entire derivative is always positive we need to show that the numerator is positive.
+
+However, 
+\[\frac{f(x)}{x}\leq f'(x) \Leftrightarrow xf'(x)-f(x) \geq 0 \]
+and we know that, by the mean value theorem there is some $c \in (0,x)$ such that $\frac{f(x)}{x}=f'(x)$ since $f(0)=0$. Since $f$ is monotonically increasing it must be that $f'(x) \geq \frac{f(x)}{x}$.
+
+Thus, $xf'(x)-f(x) \geq 0 $ and so the derivative of $g$ is positive, which implies that $g$ is monotonically increasing.
+
+\end{proof}
+\subsection{Problem 11}
+
+\subsubsection{Question}
+Suppose that $f$ is defined in a neighborhood of $x$, and suppose that $f''(x)$ exists. Show that
+\[\lim_{h \to 0}\frac{f(x+h)+f(x-h)-2 f(x)}{h^2} = f''(x).\]
+Show by an example that the limit may exist even if $f''(x)$ does not.
+
+\emph{Hint:} Use Theorem 5.13.
+
+\subsubsection{Answer}
+
+\emph{Theorem 5.13} (L'Hopital's Rule)
+
+Suppose $f$ and $g$ are real and differentiable in $(a,b)$, and $g'(x) \neq 0$ for all $x\in (a,b)$ where $-\infty \leq a < b \leq + \infty$. Suppose
+\[\frac{f'(x)}{g'(x)} \to A\ as\ x \to a.\]
+If
+\[f(x)\to 0\ and\ g(x)\to 0\ as\ x\to a,\]
+or if
+\[g(x)\to +\infty\ as\ x\to a,\]
+then
+\[\frac{f(x)}{g(x)}\to A\ as\ x\to a.\]
+
+\begin{proof}
+Since the denominator of 
+\[\lim_{h \to 0}\frac{f(x+h)+f(x-h)-2 f(x)}{h^2}\]
+goes to zero as $h \to 0$ we can employ L'Hopital's rule. Using this we get  
+\[\lim_{h \to 0}\frac{f(x+h)+f(x-h)-2 f(x)}{h^2} = \lim_{h \to 0} \frac{f'(x+h)-f'(x-h)}{2 h}\]
+Since the denominator is again zero we apply L'Hopital's rule again
+\[ = \lim_{h \to 0} \frac{f''(x+h)+f''(x-h)}{2 }\]
+\[ = f''(x) \]
+\end{proof}
+
+An example of a function that is not differentiable, but where this limit exists is 
+\[ f(x)= \left\{ \begin{array}{lr} 0 & x \leq 0 \\ x^2  & x > 0 \end{array} \right. \]
+The second derivative of this function does not exist at zero, as 
+\[ f'(x)= \left\{ \begin{array}{lr} 0 & x \leq 0 \\ 2x  & x > 0 \end{array} \right. \]
+however we can compute the above limit at zero by
+\[\lim_{h \to 0}\frac{f(x+h)+f(x-h)-2 f(x)}{h^2}=\lim_{h \to 0}\frac{h^2}{h^2}=1\]
+
+
+
+
+
+\subsection{Problem 14}
+
+\subsubsection{Question}
+Let $f$ be a differentiable real function defined in $(a, b)$. Prove that $f$ is convex if and only if $f'$ is monotonically increasing. Assume next that $f''(x)$ exists for every $x \in (a,b)$, and prove that $f$ is convex if and only if $f''(x) \geq 0$ for all $x \in (a,b)$.
+
+\subsubsection{Answer}
+
+A function $f$ is said to be convex if
+\[f(\lambda  + (1- \lambda) y ) \leq \lambda f(x) + (1-\lambda) f(y) \]
+
+First we shall prove ($\Rightarrow$) that $f'$ monotonically increasing implies $f$ is convex.
+
+\begin{proof}Assume $f'$ is monotonically increasing. Let $x < y<z$ for $x,y,z \in (a,b)$. The mean value theorem implies that $\exists c \in (x,y)$ such that $f'(c)=\frac{f(y)-f(x)}{y-x}$. Similarly $\exists d \in (y,z)$ such that $f'(d)=\frac{f(z)-f(y)}{z-y}$. Thus, since $f'$ is assumed to be monotonically increasing we have 
+\[f'(c) \leq f'(d) \Rightarrow \frac{f(y)-f(x)}{y-x} \leq \frac{f(z)-f(y)}{z-y}\]
+Because $y\in(x,z)$ we know that $y=\lambda x+ (1-\lambda)z$ for some $\lambda \in (0,1)$. Moreover, we have
+\[\frac{f(y)-f(x)}{y-x} \leq \frac{f(z)-f(y)}{z-y}\]
+\[\Rightarrow \frac{f(\lambda x+ (1-\lambda)z)-f(x)}{\lambda x+ (1-\lambda)z-x} \leq \frac{f(z)-f(\lambda x+ (1-\lambda)z)}{z-\lambda x- (1-\lambda)z}\]
+\[\Rightarrow \frac{f(\lambda x+ z - z \lambda)-f(x)}{\lambda x+ z-\lambda z-x} \leq \frac{f(z)-f(\lambda x+ z - \lambda z)}{z-\lambda x - z + \lambda z}\]
+\[\Rightarrow \frac{f(\lambda x+ z - z \lambda)-f(x)}{\lambda x+ z-\lambda z-x} \leq \frac{f(z)-f(\lambda x+ z - \lambda z)}{-\lambda x  + \lambda z}\]
+\[\Rightarrow  \lambda (z-x)  \left( f(\lambda x+ z - z \lambda)-f(x) \right) \leq \left( f(z)-f(\lambda x+ z - \lambda z)  \right) \left( 1 -\lambda \right) \left(  z - x  \right)\]
+We note here that the direction of the inequality is preserved since we have $x<z$ and $\lambda > 0$ and $1-\lambda >0$ (*)
+\[\Rightarrow  \lambda  \left( f(\lambda x+ z - z \lambda)-f(x) \right) \leq \left( f(z)-f(\lambda x+ z - \lambda z)  \right) \left( 1 -\lambda \right) \]
+\[\Rightarrow  \lambda  \left( f(\lambda x+ z(1 -  \lambda))-f(x) \right) \leq \left( f(z)-f(\lambda x+ z(1  - \lambda ))  \right) \left( 1 -\lambda \right) \]
+\[\Rightarrow  \lambda  f(\lambda x+ z(1 -  \lambda))- \lambda  f(x)  \leq f(z)-f(\lambda x+ z(1  - \lambda ))  -\lambda f(z)+ \lambda f(\lambda x+ z(1  - \lambda ))  \]
+reducing yields
+\[ - \lambda  f(x)  \leq f(z)-f(\lambda x+ z(1  - \lambda ))  -\lambda f(z)   \]
+\[\Rightarrow - \lambda  f(x) -f(z) + \lambda f(z)   \leq -f(\lambda x+ z(1  - \lambda )) \]
+\[\Rightarrow  \lambda  f(x) + f(z) - \lambda f(z)  \geq f(\lambda x+ z(1  - \lambda )) \]
+\[\Rightarrow  \lambda  f(x) + f(z)(1 - \lambda )  \geq f(\lambda x+ z(1  - \lambda )) \]
+but since the initial choice of $x, y, z$ was arbitrary (up to ordering) this holds for any $x<z$. We must still address the case corresponding to $x>z$. This is easy though.
+
+For let $x>z$. Then by what we have proven already
+\[ \lambda  f(z) + f(x)(1 - \lambda )  \geq f(\lambda z+ x(1  - \lambda )) \]
+now let $\alpha = 1-\lambda$ so it follows from the above that
+\[ ( 1-\alpha)  f(z) + f(x)(1 - 1+ \alpha )  \geq f((1-\alpha )z+ x(1  - 1+\alpha )) \]
+\[ \Rightarrow ( 1-\alpha)  f(z) + \alpha f(x)  \geq f((1-\alpha )z+ \alpha x) \]
+
+Thus if $f'$ is monotonically increasing
+\[\lambda  f(x) + f(z)(1 - \lambda )  \geq f(\lambda x+ z(1  - \lambda )) \]
+for $\forall x,y\in (a,b)$, $\lambda \in (0,1)$\end{proof}
+
+Now we prove ($\Leftarrow$) that  $f$ convex implies $f'$ is monotonically increasing.
+
+\begin{proof}
+The proof of this direction follows similarly to the previous. Let's assume $f$ is convex.
+
+Then
+\[ \lambda  f(x) + f(z)(1 - \lambda )  \geq f(\lambda x+ z(1  - \lambda )) \]
+for $ x<z$ (Note: we must have $x<z$ by (*)) and $x,z \in (a,b)$, $\lambda \in (0,1)$. Following the previous reasoning in reverse we see that
+\[\frac{f(y)-f(x)}{y-x} \leq \frac{f(z)-f(y)}{z-y}\]
+for $\forall y \in (x,z)$. 
+
+So in the limit $y \to x$ we have 
+\[ f'(x) \leq \frac{f(z)-f(x)}{z-x}\] 
+and in the limit $y \to z$ we have 
+\[\frac{f(z)-f(x)}{z-x} \leq f'(z) \]
+thus, combining these statements we have
+\[ f'(x) \leq \frac{f(z)-f(x)}{z-x}  \leq f'(z) \]
+so $f'$ is monotonically increasing as desired.\end{proof}
+
+Now it only remains to prove that (assuming $f''(x)$ exists for $x \in (a,b)$) $f$ is convex if and only if $f''(x) \geq 0$ for $\forall x \in (a,b)$.
+
+\begin{proof}
+$f$ is convex $\Leftrightarrow$ $f'$ is monotonically increasing by the previous proof. Moreover, $f'$ is monotonically increasing $\Leftrightarrow$ $f''\geq 0$ (proved in class).
+
+So we have shown that (assuming $f''(x)$ exists for $x \in (a,b)$) $f$ is convex if and only if $f''(x) \geq 0$ for $\forall x \in (a,b)$ as desired.\end{proof}
+
+
+
+\end{document}

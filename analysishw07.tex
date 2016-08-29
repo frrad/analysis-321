@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{13 February 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{setspace}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Chapter 7}
+\subsection{Problem 16}
+
+\subsubsection{Question}
+Suppose $\{f_n\}$ is an equicontinuous sequence of functions on a compact set $K$, and $\{f_n\}$ converges pointwise on $K$. Prove that $\{f_n\}$ converges uniformly on $K$.
+\subsubsection{Answer}
+
+
+\begin{proof}
+We shall prove that $\{f_n\}$ converges uniformly on $K$.
+
+Let $\epsilon>0$, and pick $\delta > 0$ by equicontinuity. Let $V(x,\delta)$ be the set of all $y \in K $ with $d(x,y)< \delta$. Since there is a countable dense subset $E \subset K$ and, $K$ is compact, there are finitely many points $x_1, \dots, x_m$ in $E$ such that
+\begin{equation}\label{45}K \subset V(x_1, \delta) \cup \dots \cup V(x_m,\delta).\end{equation}
+
+Since $\{f_n(x)\}$ converges for every $x \in E$, there is an integer $N$ such that
+\begin{equation}\label{46} |f_l(x_s)=f_j(x_s)| < \epsilon \end{equation}
+whenever $i \leq N, j \leq N, 1\leq  s \leq m.$
+
+If $x \in K$ (\ref{45}) shows that $x \in V(x_s,\delta)$ for some $s$, so that
+\[ f_l(x)-f_l(x_s) < \epsilon \]
+for every $i$, If $i \geq N$ and $j \geq N$, it follows from (\ref{46}) that 
+\[ |f_l(x)-f_j(x)|\leq |f_i(x) - g_i(x_s)| + |f_i(x_s)-f_j(x_s)| + |f_j(x_s) -f_j(x)| < 3 \epsilon\]
+
+But this is just what we wanted to show.
+
+\end{proof}
+
+\subsection{Problem 18}
+
+\subsubsection{Question}
+Let $\{f_n\}$ be a uniformly bounded sequence of functions which are Riemann-integrable on $[a,b]$, and put
+\[F_n (x) = \int_a^x f_n(t)dt \quad (a \leq x \leq b).\]
+Prove that there exists a subsequence $\{ F_{n_k}\}$ which converges uniformly on $[a,b]$.
+\subsubsection{Answer}
+The Arzela-Ascoli Theorem states "Consider a sequence of real-valued continuous functions $\{f_n\}$ defined on a closed and bounded interval $[a, b]$ of the real line. If this sequence is uniformly bounded and equicontinuous, then there exists a subsequence $\{f_{n_k}\}$ that converges uniformly."
+
+I will prove that the sequence of functions $\{F_n\}$ satisfies the criteria to apply this theorem, and therefore that there exists a subsequence  $\{ F_{n_k}\}$ which converges uniformly on $[a,b]$ as desired. 
+
+\begin{proof}
+We have that each $F_n$ is real valued, and defined on a compact subset of $\mathbb{R}$, thus it remains only to prove that each $F_n$ is uniformly bounded, equicontinuous. 
+
+
+Now fix some $M$ so that $|f_n| \leq M$ for all $n$. For all $x \in [a,b]$, $n$ we have 
+\[|F_n(x)| \leq \int_a^x |f_n(x)| \leq (x-a)M \leq (b-a)M\] 
+so the $F_n$ are all uniformly bounded.
+
+Now observe that for any $x, y  \in [a,b]$ we have
+\[|F_n(y)-F_n(x)| = \left|\int_x^y f_n(t)dt \right| \leq M|y-x|,\]
+and so we have equicontinuity. So we we can apply Arzela-Ascoli.
+\end{proof}
+
+
+\section{Chapter 9}
+\subsection{Problem 5}
+
+\subsubsection{Question}
+Prove that to every $A \in L(R^n,R^1)$ corresponds a unique $y \in R^n$ such that $Ax =x \cdot y$.
+
+Prove also that $||A||=|y|$.
+
+\emph{Hint: }Under certain conditions, equality holds in the Schwarz inequality.
+\subsection{Answer}
+\begin{proof}
+Any $A \in L(R^n,R^1)$ can be written uniquely  as 
+\[ \sum_{i=1}^n c_i  A \hat{e}_i = \sum_{i=1}^n c_i d_i  \]
+for some fixed set of unique  constants $d_i$ (since the codomain is just R). So $\vec{d}=(d_1,\dots,d_n)$ is they $y$ above. 
+\end{proof}
+
+\begin{proof}
+It must be that  $||A||\geq|y|$ since in particular $A(\hat{d})=|y|$ (where $\hat{d}$ is a unit vector parallel to $d$). 
+\[\hat{d}=\frac{d}{|d|} \Rightarrow |A(\hat{d})|= \frac{1}{|d|} |A(d)|=\frac{|d|^2}{|d|}= |d|\]
+Moreover we know that $||A|| \leq |y|$ since we can write any other vector in the unit circle as a sum of the form
+\[a\hat{d}+x_p\]
+for some $a<1$ and $x_p\cdot \hat{d}=0$. However observe
+\[|A(a\hat{d}+x_p)|=a|A(\hat{d})|+0< |y|\]
+\end{proof}
+
+\end{document}

@@ -1,0 +1,93 @@
+  \documentclass[12pt]{article}
+\setlength\headheight{14.5pt}
+\title{Homework}
+\author{Frederick Robinson}
+\date{14 April 2010}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\pagestyle{fancyplain}
+
+\begin{document}
+
+\lhead{Frederick Robinson}
+\rhead{Math 321: Analysis}
+
+   \maketitle
+
+\setcounter{tocdepth}{2} 
+
+
+\section{Problem 1}
+\subsection{Question}
+Let $\{E_k\}_{k=1}^\infty$ be a countable disjoint collection of measurable sets. Prove that for any set $A$.
+\[m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right) = \sum_{k=1}^\infty m^*(A \cap E_k).\]
+\subsection{Answer}
+\begin{proof}
+We will begin by assuming that both sides of our (alleged) equality are finite.
+By countable subadditivity  we have
+\[m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right)  \leq \sum_{k=1}^\infty m^*(A \cap E_k).\]
+In order to prove the reverse inequality we will demonstrate in particular that given $\epsilon > 0$
+\[m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right) + \epsilon \geq \sum_{k=1}^\infty m^*(A \cap E_k).\]
+
+Recall now that Proposition 6 (Page 36) of the book establishes the finite case of this proposition. In particular we have 
+\[m^*\left( A \cap \bigcup_{k=1}^n E_k\right) = \sum_{k=1}^n m^*(A \cap E_k).\]
+Furthermore, given any $\epsilon>0$ there exists some $n \in \mathbb{N}$ such that 
+\[\sum_{k=1}^\infty m^*(A \cap E_k) \leq \sum_{k=1}^n m^*(A \cap E_k) + \epsilon.\]
+Taking these together we see that for any $\epsilon > 0$
+\begin{eqnarray*}\sum_{k=1}^\infty m^*(A \cap E_k) &\leq& \sum_{k=1}^n m^*(A \cap E_k) + \epsilon \\ &=& m^*\left( A \cap \bigcup_{k=1}^n E_k\right)  + \epsilon \leq m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right)  + \epsilon \end{eqnarray*}
+\[  \Rightarrow m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right)  + \epsilon \geq \sum_{k=1}^\infty m^*(A \cap E_k) \]
+as desired.
+
+Lastly we must consider the nonfinite cases. If either $m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right)$ or $\sum_{k=1}^\infty m^*(A \cap E_k)$ is nonfinite then so is the other. In particular, 
+\[m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right) = \infty \Rightarrow \sum_{k=1}^\infty m^*(A \cap E_k) = \infty\]
+by subadditivity and 
+\[ \sum_{k=1}^\infty m^*(A \cap E_k) = \infty \Rightarrow m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right) = \infty \]
+since
+\[ \sum_{k=1}^\infty m^*(A \cap E_k) = \infty\]
+implies that given any $N$ there is some corresponding $m$ such that 
+\[ \sum_{k=1}^m m^*(A \cap E_k) = N = m^*\left( A \cap \bigcup_{k=1}^m E_k\right) \]
+so
+\[ m^*\left( A \cap \bigcup_{k=1}^\infty E_k\right) = \infty\]
+as desired.
+\end{proof}
+
+\section{Problem 3}
+\subsection{Question}
+For $\epsilon>0$ and $n \in \mathbb{N}$, let $\mathcal{D}_{\epsilon, N}$ be the set of real numbers $x \in [0,1]$ with the following property: for every integer $q \geq N$ and for every integer $0 \leq p \leq q$:
+\[\left| x-\frac{p}{q} \right| \geq \frac{1}{q^{2+\epsilon}}.\]
+The number $x \in [0,1]$ is called a \emph{Diophantine number} if $x \in \mathcal{D}_{\epsilon, N}$, for some $\epsilon, N$. A number that is not Diophantine is called \emph{Liouville}. Liouville numbers are well-approximable by rational number, and Diophantine numbers are not.
+
+Prove that for every $\epsilon > 0 $, the set
+\[\bigcup_{N=1}^\infty \mathcal{D}_{\epsilon, N}\]
+has Lebesgue measure $1$ in $[0,1]$ (that is, its complement has measure 0). Conclude that for almost every $x \in [0,1]$ and for every $\epsilon >0$, there exists a $C > 0$ such that 
+\[\left| x-\frac{p}{q} \right| \geq \frac{C}{q^{2+\epsilon}},\]
+for all $p,q \in \mathbb{N}$. In particular, the set of Diophantine numbers has full measure (though this statement is even stronger than that).
+\subsection{Answer}
+\begin{proof}
+Fixing $\epsilon$ we have that $x \notin \mathcal{K}_\epsilon = [0,1] \cap \bigcup_{N=1}^\infty \mathcal{D}_{\epsilon, N}$ if and only if for each $q,p \in \mathbb{N}$ with $p \leq q$
+\[\left| x-\frac{p}{q} \right| < \frac{1}{q^{2+\epsilon}}.\]
+Thus we can cover the complement $\mathcal{K}^C_\epsilon \cap [0,1]$ by a finite union of open balls defined as follows for some $n$: 
+\[\bigcup_{k=1}^n B_{\frac{1}{n^{2+\epsilon}}} \frac{k}{n}\]
+So, in particular $\mathcal{K}^C_\epsilon \cap [0,1]$ has outer measure less than or equal to 
+\[n \frac{1}{n^{2+\epsilon}} = \frac{1}{n^{1+\epsilon}}\]
+for some choice of $n$. However, since we can choose $n$ to be arbitrarily large, this quantity can be as small as desired, and the outer measure of $\mathcal{K}_\epsilon^C\cap[0,1]=0$ as desired.
+
+Now we may conclude that for almost every $x \in [0,1]$ and for every $\epsilon >0$, there exists a $C > 0$ such that 
+\[\left| x-\frac{p}{q} \right| \geq \frac{C}{q^{2+\epsilon}},\]
+for all $p,q \in \mathbb{N}$.
+\end{proof}
+
+
+\section{Problem 5}
+\subsection{Question}
+Let $E$ be a measurable set, and let $N$ be the nonmeasurable set constructed in class. Prove that if $E \subset N$, then $m(E)=0$.
+\subsection{Answer}
+\begin{proof}
+Suppose towards a contradiction that there exists some measurable $E \subset N$ with nonzero measure. Then consider 
+\[F=\bigcup_{q \in [0,1] \cap \mathbb{Q}} E +q\]
+However, 
+\[0<m(E)\leq1 \quad \mathrm{and} \quad  0< m(F) \leq 2\]
+by monotonicity of measure, assumption. However this is a contradiction to the countable additivity of measure for measurable sets.
+\end{proof}
+\end{document}
